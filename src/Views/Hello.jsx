@@ -13,7 +13,7 @@ function Hello(){
     async function fetchUsers(){
       const res = await fetch("https://webdev.talos.net.nz/~todd/api/users");
       res
-        .json()
+        .json() 
         .then(res => setUsers(res))
         .catch(err => setErrors(err));
     }
