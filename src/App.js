@@ -10,8 +10,8 @@ function App() {
                 <BrowserRouter>
                     <div>
                         <Switch>
-                            <Route exact path="/index.html" component={Hello} />
-                            <Route exact path="/" component={Hello} />
+                            <Route  path="/index.html" component={Hello} />
+                            <Route  path="/" component={Hello} />
                             {/* Commented out 
                             <Route exact path="/contacts" component={Contacts} />
                             <Route exact path="/add" component={AddContact} />
