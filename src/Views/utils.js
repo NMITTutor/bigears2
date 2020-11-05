@@ -21,7 +21,11 @@ export async function login({ username, password }) {
     .then( res => res.json())
     .then(data => {
       alert("DATA IS"+data); // JSON data parsed by `data.json()` call
-      reject();
+      let resultObj = (JSON.parse(data))[0];
+      if(resultObj.Result != 1 )
+          reject();
+      else 
+          resolve();
     })
     ; 
   });
