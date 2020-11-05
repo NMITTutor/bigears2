@@ -1,36 +1,68 @@
 use todd;
 
-drop table if exists Event;
-drop table if exists Person;
-create table Person(
-    ID int auto_increment primary key,
-    Name varchar(30),
-    Password varchar(30)
-);
+-- drop table if exists Event;
+-- drop table if exists Person;
+-- create table Person(
+   -- ID int auto_increment primary key,
+   -- Name varchar(30),
+   -- Password varchar(30)
+-- );
 
-create table Event(
-    ID int auto_increment primary key,
-    PersonID int ,
-    Value varchar(255),
-    foreign key (PersonID) references Person(ID)
-);
+-- create table Event(
+--    ID int auto_increment primary key,
+--    PersonID int ,
+--    Value varchar(255),
+--    foreign key (PersonID) references Person(ID)
+-- );
 
-insert into Person(Name, Password) 
-values ('Todd','P@ssword1'), 
-       ('Trent','P@ssword2'),
-       ('Tamisin','P@ssword3'),
-       ('Trisha','P@ssword4');
-insert into Event(PersonID, Value)
-values (1, 'Todd said this'),
-       (2, 'Trent said this');
+-- insert into Person(Name, Password) 
+-- values ('Todd','P@ssword1'), 
+--       ('Trent','P@ssword2'),
+--       ('Tamisin','P@ssword3'),
+--        ('Trisha','P@ssword4');
+-- insert into Event(PersonID, Value)
+-- values (1, 'Todd said this'),
+ --      (2, 'Trent said this');
 
-drop procedure if exists GetUsers;
+-- drop procedure if exists GetUsers;
+-- delimiter //
+-- create procedure GetUsers()
+-- begin
+--       select * from Person;
+-- end //
+-- delimiter ;
+drop procedure if exists CheckPassword;
 delimiter //
-create procedure GetUsers()
+create procedure CheckPassword (pUser VARCHAR(50), pPassword VARCHAR(50))
 begin
-      select * from Person;
+     DECLARE vResult int ;
+     select 
+            case  
+               when Name = pUser and Password = pPassword then 1
+               when Name = pUser and Password <> pPassword then 0
+            end as Result
+    from 
+       Person
+    where
+        pUser = Name
+    into vResult;
+
+    if ISNULL(vResult) then 
+      set vResult = -1;
+    end if;
+
+    SELECT vResult as Result;
+
+     
+
 end //
 delimiter ;
+-- Test CheckPassword
+call CheckPassword('Todd','P@ssword1');
+call CheckPassword('Todd','P@ssword11');
+call CheckPassword('Toddy','P@ssword11');
+
+
 
  
 
