@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
-import { login } from './utils';
+import { login, storeComment } from './utils';
 
 function loginReducer(draft, action) {
   switch (action.type) {
@@ -76,7 +76,7 @@ const DispatchContext = React.createContext();
 
 export default function LoginUseContext() {
   const [state, dispatch] = useImmerReducer(loginReducer, initialState);
-  const { username, password, isLoading, error, isLoggedIn, todos, comment } = state;
+  const { username, password, isLoading, error, isLoggedIn, todos } = state;
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -172,8 +172,8 @@ function TodoItem({ title, completed }) {
     dispatch({ type: 'comment' });
 
     try {
-      alert('need to add call api to store the comment');
-      // await login({ username, password }); // <<< HERE WE CONNECT UP TO THE API CALL IN util.js
+      alert('Calling api to store the comment - something wrong with the login state');
+      await storeComment({ username, comment }); // <<< HERE WE CONNECT UP TO THE API CALL IN util.js
       dispatch({ type: 'success' });
     } catch (error) {
       dispatch({ type: 'error' });

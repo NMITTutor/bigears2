@@ -62,6 +62,22 @@ call CheckPassword('Todd','P@ssword1');
 call CheckPassword('Todd','P@ssword11');
 call CheckPassword('Toddy','P@ssword11');
 
+drop procedure if exists StoreComment;
+delimiter //
+create procedure StoreComment (pUser VARCHAR(50), pComment VARCHAR(50))
+begin
+     insert into Event(PersonID, Value)
+     values ((select ID from Person where name = pUser LIMIT 1), pComment);
+
+     SELECT 'Stored a commnet' As Result;
+
+end //
+delimiter ;
+-- Test StoreComment
+call StoreComment('Todd','Test');
+call StoreComment('Todd','Test2');
+call StoreComment('Toddy','Test3');
+
 
 
  
