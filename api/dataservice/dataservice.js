@@ -1,5 +1,6 @@
 let mysql = require('mysql');
 
+
 function GetUser(aResFunction){
     let connection = mysql.createConnection({
         host: 'localhost',
@@ -29,3 +30,4 @@ function GetUser(aResFunction){
 }
 
 module.exports = GetUser; 
+ 

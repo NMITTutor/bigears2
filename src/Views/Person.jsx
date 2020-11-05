@@ -8,7 +8,7 @@ function Person(props){
 
     return (
        <div className="container">
-          I am {props.Name}
+          I am the best {props.Name}
        </div>
     
     );

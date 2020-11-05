@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Z_STREAM_ERROR } from "zlib";
 import Person from "./Person";
+import Login from "./Login";
 
 
 function Hello(){
@@ -27,6 +28,7 @@ function Hello(){
        <div className="container">
            <h1>ello</h1>
            <p> <ul> {apiUsers.map(x =><li><Person Name={x.Name}/></li>)} </ul> </p>
+           <Login />
        </div>
     
     );
